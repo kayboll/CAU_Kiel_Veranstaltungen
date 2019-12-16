@@ -15,12 +15,12 @@ for event in events:        # Second Example
     #elementDatePlaceTime = event.cssselect("div[class='news-list-item__dateline']")[0].text_content().strip().split("|")
 
     #print 'Date :',elementDatePlaceTime
-    Time = event.cssselect("div[class='news-list-item__dateline']")[0][1].text_content()
+    Time = event.cssselect("div[class='news-list-item__dateline']")[0][1].text
     Time = ''.join(Time.split())
     Time = Time.split("|")
     Time = " | ".join(Time)
     
-    Title = event.cssselect("h3[class='ce-headline-h4']")[0].cssselect("span")[0].text_content()
+    Title = event.cssselect("h3[class='ce-headline-h4']")[0].cssselect("span")[0].text
     print Title
     print Time
     scraperwiki.sqlite.save(unique_keys=['title'], data={"title": Title, "time": Time})
