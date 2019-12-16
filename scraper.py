@@ -3,7 +3,6 @@
 
 import scraperwiki
 import lxml.html
-
 #
 # # Read in a page
 html = scraperwiki.scrape("http://www.uni-kiel.de/de/veranstaltungen/ueberblick")
@@ -12,12 +11,8 @@ html = scraperwiki.scrape("http://www.uni-kiel.de/de/veranstaltungen/ueberblick"
 root = lxml.html.fromstring(html)
 events = root.cssselect("div[class='news-list-item']")
 for event in events:  
-    Time = event.cssselect("div[class='news-list-item__dateline']")[0][1].text
-    Time = ''.join(Time.split())
-    Time = Time.split("|")
-    Time = " | ".join(Time)
-    Time = Time.replace(",",", ")
-    
+    Time = event.cssselect("div[class='news-list-item__dateline']")[0][1].text.strip()
+    Time = " ".join(Time.split())
     Title = event.cssselect("h3[class='ce-headline-h4']")[0].cssselect("span")[0].text
     print Title.encode('utf-8')
     print Time.encode('utf-8')
