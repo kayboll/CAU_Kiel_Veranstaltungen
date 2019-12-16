@@ -3,7 +3,7 @@
 
 import scraperwiki
 import lxml.html
-import re
+
 #
 # # Read in a page
 html = scraperwiki.scrape("http://www.uni-kiel.de/de/veranstaltungen/ueberblick")
@@ -21,8 +21,8 @@ for event in events:        # Second Example
     Time = " | ".join(Time)
     
     Title = event.cssselect("h3[class='ce-headline-h4']")[0].cssselect("span")[0].text
-    print Title.encode("ascii")
-    print Time.encode("ascii")
+    print Title.encode('utf-8')
+    print Time.encode('utf-8')
     scraperwiki.sqlite.save(unique_keys=['title'], data={"title": Title, "time": Time})
 
   
