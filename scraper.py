@@ -21,8 +21,8 @@ for event in events:        # Second Example
     Time = " | ".join(Time)
     
     Title = event.cssselect("h3[class='ce-headline-h4']")[0].cssselect("span")[0].text
-    print Title
-    print Time
+    print Title.encode("ascii")
+    print Time.encode("ascii")
     scraperwiki.sqlite.save(unique_keys=['title'], data={"title": Title, "time": Time})
 
   
